@@ -5,7 +5,7 @@ int main(int argc,char** argv)
 {	
 	for(;currentFrame < 600 ;){
 	
-		string image_name = "/home/leibing/Downloads/2011_09_26_drive_0061_sync/image_00/data/" + getFrameStr(currentFrame) + ".png";
+		string image_name = "/2011_09_26_drive_0061_sync/image_00/data/" + getFrameStr(currentFrame) + ".png";
 				
 		vector<Point2f> corners;
 		image = imread(image_name);//原图
