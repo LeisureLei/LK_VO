@@ -8,7 +8,7 @@ OpenCV + g2o
 #### mkdir build   cd build   cmake ..   make    ./lidtocam
 
 ## Results
-
+![demo](https://github.com/LeisureLei/LK_VO/blob/master/lkdemo.gif)
 
 ### 200 frames gps trajetory 
 ![gps](https://github.com/LeisureLei/LK_VO/blob/master/gps_trajetory.png)
