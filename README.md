@@ -23,3 +23,5 @@ OpenCV + g2o
 
 ### 200 frames LK_VO trajetory
 ![lk](https://github.com/LeisureLei/LK_VO/blob/master/LK_trajectory.png)
+
+![demo](https://github.com/LeisureLei/LK_VO/blob/master/lkdemo.gif)
