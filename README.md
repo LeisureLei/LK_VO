@@ -5,18 +5,10 @@ A simple VO with the help of opencv built-in function and optical track strategy
 OpenCV + g2o
 
 ## Run
-
-#### mkdir build
-
-#### cd build
-
-#### cmake ..
-
-#### make
-
-#### ./lidtocam
+#### mkdir build   cd build   cmake ..   make    ./lidtocam
 
 ## Results
+![demo](https://github.com/LeisureLei/LK_VO/blob/master/lkdemo.gif)
 
 ### 200 frames gps trajetory 
 ![gps](https://github.com/LeisureLei/LK_VO/blob/master/gps_trajetory.png)
@@ -24,4 +16,4 @@ OpenCV + g2o
 ### 200 frames LK_VO trajetory
 ![lk](https://github.com/LeisureLei/LK_VO/blob/master/LK_trajectory.png)
 
-![demo](https://github.com/LeisureLei/LK_VO/blob/master/lkdemo.gif)
+
