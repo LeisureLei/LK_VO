@@ -4,23 +4,13 @@
 int main(int argc,char** argv)
 {	
 	for(;currentFrame < 600 ;){
-		//string pointClouds_name = "/home/leibing/Downloads/2011_09_26_drive_0096_sync/velodyne_points/data_new/" + getFrameStr(currentFrame) + ".pcd";
 		string image_name = "/home/leibing/Downloads/2011_09_26_drive_0095_sync/image_00/data/" + getFrameStr(currentFrame) + ".png";
-		//string imu_name = "/home/leibing/Downloads/2011_09_26_drive_0061_sync/oxts/data/" + getFrameStr(currentFrame) + ".txt";
-		//string imu_namekplus1 = "/home/leibing/Downloads/2011_09_26_drive_0061_sync/oxts/data/" + getFrameStr(currentFrame+1) + ".txt";
 
-		
 		vector<Point2f> corners;
 		image = imread(image_name);//原图
 		image_gray = imread(image_name,0);//灰度图
 		cout << "currentFrame:"<< currentFrame << endl;
-		//readIMUDatak(imu_name);  
-		//readIMUDatakplus1(imu_namekplus1);
-
-		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-		//Eigen::Isometry3d IMU_Pose = makeIMUPose(imu_data_k,imu_data_kplus1);
-		//cout<<"IMU_T : \n"<<IMU_T.matrix()<<endl;
-
+		
 		vector<Point2f> keypointsCopy;  
 		loadMatrix();
 		//光流跟踪
@@ -49,9 +39,7 @@ int main(int argc,char** argv)
 			solvePnP(pnp3dPoints, keypoints, K_Mat, Mat(), r, t, false, SOLVEPNP_EPNP); 
 			Mat R;
 			Rodrigues(r, R);
-			//cout<<"R is:"<<R<<endl;
-			//cout<<"t is:"<<t<<endl;
-							
+										
 			vector<Point2d> tmp_key;
 			for(auto kp:keypoints){
 				tmp_key.push_back(kp);
@@ -137,40 +125,6 @@ int main(int argc,char** argv)
 		}
 		
 		
-		/*
-		//计算Tck_ck+1
-		Eigen::Matrix4d Tck1_ck = T_velToCam*T_imuToVel*IMU_Pose*T_imuToVel.inverse()*T_velToCam.inverse();
-									
-		//cout<<"Tck_ck1"<<Tck_ck1<<endl;
-		
-		//求出相机坐标系下坐标
-		//makeCameraCoordinate(keypointsLast,keypoints,Tck_ck1);
-		vector<Eigen::Vector3d> P_cam = readPointClouds(pointClouds_name,keypointsLast);
-	
-		vector<Point2f> keypointsLastVec;
-		for(auto kp:keypointsLast){
-			keypointsLastVec.push_back(kp);
-		}
-		size_t n = P_cam.size();
-		tree_model* model = buildKDTree(P_cam , n );
-
-		predictPoint.clear();
-		for(size_t i = 0;i<keypointsLastVec.size();i++){
-			Eigen::Vector4d Pck = findKlabor( keypointsLastVec[i],model,n,P_cam);
-			Eigen::Vector3d Puvk1 = P_rect_00*R_rect_00*Tck1_ck*Pck;
-			Point2f tmp_point;
-			tmp_point.x = Puvk1[0]/Puvk1[2];
-			tmp_point.y = Puvk1[1]/Puvk1[2];
-			predictPoint.push_back(tmp_point);
-			//cout<<"u       :"<<keypointsCopy[i].x<<endl;
-			//cout<<"predict u:"<< Puvk1[0]/Puvk1[2]<<endl;   //u的误差比较大
-			//cout<<"v        :"<<keypointsCopy[i].y<<endl;
-			//cout<<"predict v:"<< Puvk1[1]/Puvk1[2]<<endl<<endl;
-
-		}
-		//去除错误光流跟踪点
-		//rejectWithGPS();
-		*/
 		cout<<"Tracked next points:"<<keypoints.size()<<endl;
 		cout<<"keypointsLast:"<<keypointsLast.size()<<endl;
 
